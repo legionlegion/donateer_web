@@ -258,33 +258,9 @@ input:-moz-placeholder {
   }
 }
 
-.sidebar .nav-link {
-  font-weight: 500;
-  color: #333;
-}
-
-.sidebar .nav-link .feather {
-  margin-right: 4px;
-  color: #999;
-}
-
 .sidebar-heading {
   font-size: 0.75rem;
   text-transform: uppercase;
-}
-
-.nav-link {
-  padding: 1.5rem 1rem;
-  border-bottom: 1px solid #dde0e2;
-  cursor: pointer;
-}
-
-.sidebar .nav-link.active,
-.sidebar a:hover,
-a:not([href]):not([tabindex]):focus,
-a:not([href]):not([tabindex]):hover {
-  color: #e91e63;
-  background: #efefef;
 }
 
 /* * Content */
@@ -301,18 +277,6 @@ a:not([href]):not([tabindex]):hover {
   margin-left: 15px;
   position: relative;
   top: -1px;
-}
-
-/* * Navbar */
-.navbar-brand {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-}
-
-.navbar .form-control {
-  padding: 0.75rem 1rem;
-  border-width: 0;
-  border-radius: 0;
 }
 
 .form-control-dark {
@@ -407,15 +371,6 @@ input.ng-invalid.ng-touched {
   cursor: not-allowed;
 }
 
-/* Nav */
-body .navbar {
-  padding: 6px 0 !important;
-}
-
-body .navbar-brand {
-  background: none;
-}
-
 .brand-logo {
   max-width: 85%;
 }
@@ -470,10 +425,6 @@ label {
   letter-spacing: 0.2px;
 }
 
-.navbar-dark .navbar-brand {
-  margin-left: 6px;
-}
-
 .custom-text strong {
   color: #3a3a3a;
 }
@@ -510,10 +461,6 @@ body .table thead th {
 
 .userImage {
   max-width: 125px;
-}
-
-.navbar-dark .navbar-nav .nav-link {
-  color: rgba(255, 255, 255, 1);
 }
 
 .card {
@@ -560,10 +507,6 @@ body .table thead th {
     padding: 0;
   }
 
-  ul.nav.flex-column {
-    flex-direction: inherit !important;
-  }
-
   .pt-3,
   .py-3 {
     padding-top: 1.5rem !important;
@@ -584,16 +527,6 @@ body .table thead th {
     height: auto;
   }
 
-  .sidebar-sticky .nav li {
-    width: 50%;
-    text-align: center;
-    border-right: 1px solid #c7ceff;
-  }
-
-  .sidebar-sticky .nav li:last-child {
-    border: none;
-  }
-
   .no-data img {
     max-width: 100%;
     margin-top: 0;
@@ -607,21 +540,6 @@ body .table thead th {
 
   .custom-text {
     font-size: 14px;
-  }
-
-  .navbar-nav {
-    float: right;
-    width: 50%;
-    text-align: right;
-    display: inherit;
-    margin: 0;
-  }
-
-  .navbar-dark .navbar-brand {
-    margin: 0;
-    width: 50%;
-    float: left;
-    display: inherit;
   }
 
   .sidebar {

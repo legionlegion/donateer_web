@@ -1,28 +1,39 @@
 <!-- Top navigation -->
-
-
+<div class="grid m-0 align-content-start backgroundImage" style="height: 50%">
+  <nav class="col-12 navbar navbar-expand-lg navbar-light bg- p-5">
+    <a class="navbar-brand" href="#">Donateer</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Our Mission</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Get Involved</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="pi pi-user"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#"><i class="pi pi-exclamation-circle"></i>Profile</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"
+                (click)="authService.SignOut()"></i>Logout</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <h2 class="col-5 p-5 mt-5">Give your time to help these animals</h2>
+</div>
 <!-- Sidebar navigation -->
 <div class="container-fluid">
   <div class="row">
-
-    <nav class="col-md-2 d-md-block bg-light sidebar">
-      <div class="sidebar-sticky">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active">
-              <i class="fas fa-user"></i>User Profile
-            </a>
-          </li>
-          <!-- Calling SignOut() Api from AuthService -->
-          <li class="nav-item">
-            <a class="nav-link" (click)="authService.SignOut()">
-              <i class="fas fa-sign-out-alt"></i>Log out
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
     <!-- Main content -->
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="inner-adjust">
@@ -45,8 +56,23 @@
             </div>
           </div>
         </div>
-
       </div>
     </main>
   </div>
 </div>
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-dark text-muted">
+  <!-- Section: Social media -->
+  <section class="flex p-5 border-bottom">
+    <!-- Left -->
+    <div class="mr-auto">
+      <span>Donateer</span>
+    </div>
+
+    <!-- Right -->
+    <a class="pr-3" href="#">Our Mission</a>
+
+    <a href="#">Get Involved</a>
+
+  </section>
+</footer>
