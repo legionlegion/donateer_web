@@ -45,6 +45,7 @@ export class AuthService {
 
         await this.SetUserData(result.user);
         this.ngZone.run(() => {
+          console.log("Navigating to dashboard")
           this.router.navigate(['dashboard']);
         });
       })
@@ -102,6 +103,7 @@ export class AuthService {
   GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {
       if (res) {
+        console.log("Navigating to dashboard")
         this.router.navigate(['dashboard']);
       }
     });
@@ -115,6 +117,7 @@ export class AuthService {
         await this.SetUserData(result.user);
 
         this.ngZone.run(() => {
+          console.log("Navigating to dashboard")
           this.router.navigate(['dashboard']);
         });
       })
@@ -144,8 +147,11 @@ export class AuthService {
 
   // Sign out
   SignOut() {
+    console.log("SIGN OUT FUNCTION RUNNING")
     return this.afAuth.signOut().then(() => {
+      console.log("SIGN OUT THEN BLOCK RUNNING")
       localStorage.removeItem('user');
+      console.log("Navigating to sign in")
       this.router.navigate(['sign-in']);
     });
   }

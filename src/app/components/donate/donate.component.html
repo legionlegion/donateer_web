@@ -1,0 +1,107 @@
+<div class="grid m-0 h-full align-content-start" style="background-color: #fff2cf; overflow:scroll">
+    <nav class="col-12 navbar navbar-expand-lg navbar-light bg- p-5">
+        <a class="navbar-brand" href="#">Donateer</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Our Mission</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/donate">Get Involved</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="pi pi-user"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#"><i class="pi pi-exclamation-circle"></i>Profile</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"
+                                (click)="authService.SignOut()"></i>Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="grid col-12 p-8">
+        <div class="grid col-12 lg:col-7">
+            <div class="col-12">
+                <h2>Donate Now</h2>
+            </div>
+            <div class="col-12">
+                <span>Why not contribute some income earned from your job to help these charitable organisations?</span>
+            </div>
+        </div>
+        <div class="grid col-12 lg:col-5" style="justify-content: center;">
+            <img src="assets/donate_dog.jpg" class="fade-in-image" alt="Image" width="250"
+                style="min-width: 70%; min-height: 70%">
+        </div>
+    </div>
+    <div class="grid p-fluid col-12 p-8 pt-0">
+        <div class="col-12 lg:col-7 pr-8">
+            <form [formGroup]="form" (ngSubmit)="onSubmit(form)" class="grid">
+                <h2 class="pb-3">Donation Form</h2>
+                <div class="field col-12">
+                    <p-dropdown formControlName="organisation" [options]="cities" optionLabel="name"></p-dropdown>
+                </div>
+                <div class="field col-12">
+                    <span class="p-float-label">
+                        <p-calendar formControlName="startDate" [showIcon]="true" [minDate]="today"
+                            [readonlyInput]="true" inputId="startDate">
+                        </p-calendar>
+                        <label for="startDate">Start date</label>
+                    </span>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <span class="p-float-label">
+                        <p-calendar formControlName="startTime" [showTime]="true" [timeOnly]="true" [minDate]="today"
+                            [readonlyInput]="true" inputId="startTime" (onSelect)="onChangeStartTime($event)">
+                        </p-calendar>
+                        <label for="startDate">Start time</label>
+                    </span>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <span class="p-float-label">
+                        <p-calendar formControlName="endTime" [showTime]="true" [timeOnly]="true" [minDate]="startDate"
+                            [readonlyInput]="true" inputId="endTime" (onSelect)="onChangeEndTime($event)">
+                        </p-calendar>
+                        <label for="endTime">End time</label>
+                    </span>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <p-button label="Submit"></p-button>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <button pButton pRipple type="button" label="Clear"
+                        class="p-button-raised p-button-secondary" (click)="onClear()"></button>
+                </div>
+            </form>
+        </div>
+        <div class="grid col-12 lg:col-5">
+            <span>This information is needed to calculate how much money should be donated according to the number of
+                hours you choose to volunteer. It is strictly confidential and will not be disclosed to any
+                third-parties.</span>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-dark text-muted col-12">
+        <!-- Section: Social media -->
+        <section class="flex p-5">
+            <!-- Left -->
+            <div class="mr-auto">
+                <span>Donateer</span>
+            </div>
+
+            <!-- Right -->
+            <a class="pr-3" href="#">Our Mission</a>
+
+            <a href="#">Get Involved</a>
+
+        </section>
+    </footer>
+</div>
