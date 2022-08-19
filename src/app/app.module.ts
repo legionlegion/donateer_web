@@ -20,7 +20,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './shared/services/auth.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { DonateComponent } from './components/donate/donate.component';
+import { CalendarModule } from 'primeng/calendar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -29,10 +32,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SignInComponent,
     SignUpComponent,
     ForgotPasswordComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    DonateComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     ButtonModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
@@ -42,7 +47,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     InputTextModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CalendarModule,
+    DropdownModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
