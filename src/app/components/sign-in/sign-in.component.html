@@ -7,11 +7,11 @@
         display: flex;
         justify-content: center;
         ">
-          <img style="width:60%" src="assets/auth_image.png" alt="Image" width="250">
+          <img src="assets/auth_image.png" alt="Image" width="250">
         </div>
-        <h3>Sign In</h3>
+        <h4>Welcome back.<br/>Login to your account</h4>
         <div class="formGroup">
-          <input type="text" class="formControl" formControlName="email" placeholder="Email" required>
+          <input type="text" class="formControl" formControlName="email" placeholder="Email address" required>
           <small class="p-error block" *ngIf="errorLogin">Email is wrong.</small>
         </div>
         <div class="formGroup">
@@ -23,18 +23,21 @@
           <input type="submit" class="btn btnPrimary" value="Log in">
         </div>
         <div class="formGroup">
-          <span class="or"><span class="orInner">Or</span></span>
+          <span class="or"><span class="orInner">OR</span></span>
         </div>
         <!-- Calling GoogleAuth Api from AuthService -->
         <div class="formGroup">
           <button type="button" class="btn googleBtn" (click)="authService.GoogleAuth()">
             <i class="pi pi-google"></i>
-            Log in with Google
+            Continue with Google
           </button>
         </div>
+        <!-- 
         <div class="forgotPassword">
           <span routerLink="/forgot-password">Forgot Password?</span>
         </div>
+         -->
+        
       </div>
       <div class="redirectToLogin">
         <span>Don't have an account?<span class="redirect" routerLink="/register-user"> Sign Up</span></span>

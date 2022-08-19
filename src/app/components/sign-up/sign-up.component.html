@@ -7,11 +7,11 @@
         display: flex;
         justify-content: center;
         ">
-          <img style="width:60%" src="assets/auth_image.png" alt="Image" width="250">
+          <img src="assets/auth_image.png" alt="Image" width="250">
         </div>
-        <h3>Sign Up</h3>
+        <h4>Step 1/2: <br/>Enter your details to create an account</h4>
         <div class="formGroup">
-          <input type="text" class="formControl" formControlName="email" placeholder="Username" required>
+          <input type="text" class="formControl" formControlName="email" placeholder="Email" required>
           <small class="p-error block" *ngIf="errorLogin">Email must not be empty.</small>
         </div>
         <div class="formGroup">
@@ -22,16 +22,7 @@
         <div class="formGroup">
           <input type="submit" class="btn btnPrimary" value="Sign Up">
         </div>
-        <div class="formGroup">
-          <span class="or"><span class="orInner">Or</span></span>
-        </div>
-        <!-- Calling GoogleAuth Api from AuthService -->
-        <div class="formGroup">
-          <button type="button" class="btn googleBtn" (click)="authService.GoogleAuth()">
-            <i class="pi pi-google"></i>
-            Log in with Google
-          </button>
-        </div>
+        
       </div>
       <div class="redirectToLogin">
         <span>Already have an account?

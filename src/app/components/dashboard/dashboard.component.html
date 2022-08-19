@@ -1,7 +1,7 @@
 <!-- Top navigation -->
-<div class="grid m-0 align-content-start backgroundImage" style="height: 50%">
+<div class="grid m-0 align-content-start backgroundImage" style="height: 65%">
   <nav class="col-12 navbar navbar-expand-lg navbar-light bg- p-5">
-    <a class="navbar-brand" href="#">Donateer</a>
+    <a class="navbar-brand text-white font-bold" href="#">Donateer</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -12,7 +12,7 @@
           <a class="nav-link" href="#">Our Mission</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Get Involved</a>
+          <button pButton pRipple type="button" label="Get Involved" class="p-button-warning ml-3 mr-3 text-black-alpha-90 text-xs"></button>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -29,50 +29,25 @@
       </ul>
     </div>
   </nav>
-  <h2 class="col-5 p-5 mt-5">Give your time to help these animals</h2>
+  
+  <div class="col-5 p-5 ml-7 mt-8">
+    <h2 class="text-left text-5xl text-white font-semibold">Give your time to help<br />these animals</h2>
+    <button pButton pRipple type="button" label="Get Involved" class="p-button-warning w-5 mt-8 text-black-alpha-90 text-sm"></button>
+  </div>
+    
 </div>
 <!-- Sidebar navigation -->
 <div class="container-fluid">
   <div class="row">
     <!-- Main content -->
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <main role="main" class="col-md-9 col-lg-12">
       <div class="inner-adjust">
 
-        <div class="pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">User Profile</h1>
-        </div>
-        <!-- Show user data when logged in -->
-        <div class="row" *ngIf="authService.userData as user">
-          <div class="col-md-12">
-            <div class="media">
-              <img class="align-self-start mr-5 img-thumbnail rounded-circle"
-                src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}" alt="{{user.displayName}}">
-              <div class="media-body">
-                <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
-                <p>User ID: <strong>{{user.uid}}</strong></p>
-                <p>Email: <strong>{{user.email}}</strong></p>
-                <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
-              </div>
-            </div>
-          </div>
+        <div class="pt-3 pb-2 mb-3 text-center">
+          <h4 class="text-5xl font-semibold">No amount of time is too small.</h4>
+          <p>Your time will go a long way in supporting our animal welfare services that costs approximately $3 billion annually.</p>
         </div>
       </div>
     </main>
   </div>
 </div>
-<!-- Footer -->
-<footer class="text-center text-lg-start bg-dark text-muted">
-  <!-- Section: Social media -->
-  <section class="flex p-5 border-bottom">
-    <!-- Left -->
-    <div class="mr-auto">
-      <span>Donateer</span>
-    </div>
-
-    <!-- Right -->
-    <a class="pr-3" href="#">Our Mission</a>
-
-    <a href="#">Get Involved</a>
-
-  </section>
-</footer>
