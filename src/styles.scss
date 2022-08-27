@@ -94,6 +94,12 @@ h6 {
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.04);
 }
 
+.editBlock {
+  background: white;
+  padding: 0px 40px 5px;
+  overflow: hidden;
+}
+
 label {
   display: block;
   font-size: 13px;
@@ -587,4 +593,5 @@ body .table thead th {
     margin: auto;
     display: block;
   }
+
 }

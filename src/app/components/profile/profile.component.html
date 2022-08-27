@@ -1,0 +1,69 @@
+<!-- Top navigation -->
+<div class="grid m-0 align-content-start backgroundImage" style="height: 65%">
+    <nav class="col-12 navbar navbar-expand-lg navbar-light bg-blue-100 p-5">
+        <a class="navbar-brand text-white font-bold" href="#">Donateer</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/mission">Our Mission</a>
+                </li>
+                <li class="nav-item">
+                    <a pButton pRipple type="button" label="Get Involved"
+                        class="p-button-warning ml-3 mr-3 text-black-alpha-90 text-xs" href="/donate"></a>
+                </li>
+                <li>
+                    <a type="button" href="/profile">
+                        <p-avatar icon="pi pi-user" styleClass="ml-5 mr-2 mt-1"
+                            [style]="{'background-color':'#012269', 'color': '#ffffff'}" shape="circle"></p-avatar>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="grid col-12 p-8">
+        <div class="col-7 grid">
+            <h4 class="text-3xl font-semibold col-12">My Progress</h4>
+            <p-card class="col">
+                <p class="font-semibold">hours</p>
+                <p>total volunteered</p>
+            </p-card>
+            <p-card class="col">
+                <p class="font-semibold">hours</p>
+                <p>pending</p>
+            </p-card>
+            <p-card class="col">
+                <p class="font-semibold">hours</p>
+                <p>total donated</p>
+            </p-card>
+            <p-card class="col">
+                <p class="font-semibold">hours</p>
+                <p>pending donation</p>
+            </p-card>
+        </div>
+        <div class="col-4 ml-8">
+            <p-card styleClass="p-card-shadow" class="text-center">
+                <p-avatar label="V" styleClass="mr-2" size="xlarge"
+                    [style]="{'background-color':'#012269', 'color': '#ffffff', 'width': '8rem','height': '8rem'}"
+                    shape="circle"></p-avatar>
+
+                <p class="text-xl font-semibold pt-5">name</p>
+                <ng-template pTemplate="footer">
+                    <div class="p-2">
+                        <a pButton pRipple type="button" label="Edit profile" href="/edit-profile"
+                            class="p-button-outlined p-button-rounded p-button-secondary w-8 text-xs ">
+                        </a>
+                    </div>
+                    <div class="text-right p-3">
+                        <a href=# (click)="authService.SignOut()" class="text-sm">Log out</a>
+
+                    </div>
+                </ng-template>
+            </p-card>
+        </div>
+    </div>
+
+</div>

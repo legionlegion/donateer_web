@@ -5,6 +5,11 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { MissionComponent } from './components/mission/mission.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { RegisterIncomeComponent } from './components/register-income/register-income.component';
+
 // route guard
 import { AuthGuard } from './shared/guard/auth.guard';
 import { DonateComponent } from './components/donate/donate.component';
@@ -17,6 +22,11 @@ const routes: Routes = [
   { path: 'donate', component: DonateComponent, canActivate: [AuthGuard]},
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email-address', component: VerifyEmailComponent },
+  { path: 'profile', component: ProfileComponent},
+  { path: 'edit-profile', component: EditProfileComponent},
+  { path: 'register-income', component: RegisterIncomeComponent},
+  { path: 'mission', component: MissionComponent},
+  
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

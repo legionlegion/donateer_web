@@ -9,22 +9,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Our Mission</a>
+          <a class="nav-link" href="/mission">Our Mission</a>
         </li>
         <li class="nav-item">
           <a pButton pRipple type="button" label="Get Involved" class="p-button-warning ml-3 mr-3 text-black-alpha-90 text-xs" href="/donate"></a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            <i class="pi pi-user"></i>
+        <li>
+          <a type="button" href="/profile">
+            <p-avatar icon="pi pi-user" styleClass="ml-5 mr-2 mt-1" [style]="{'background-color':'#012269', 'color': '#ffffff'}"
+                        shape="circle"></p-avatar>
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#"><i class="pi pi-exclamation-circle"></i>Profile</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"
-                (click)="authService.SignOut()"></i>Logout</a>
-          </div>
         </li>
       </ul>
     </div>
@@ -32,7 +26,7 @@
   
   <div class="col-5 p-5 ml-7 mt-8">
     <h2 class="text-left text-5xl text-white font-semibold">Give your time to help<br />these animals</h2>
-    <button pButton pRipple type="button" label="Get Involved" class="p-button-warning w-5 mt-8 text-black-alpha-90 text-sm"></button>
+    <a pButton pRipple type="button" label="Get Involved" class="p-button-warning w-6 mt-8 text-black-alpha-90 text-sm" href="/donate"></a>
   </div>
     
 </div>

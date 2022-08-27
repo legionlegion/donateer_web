@@ -24,6 +24,13 @@ import { DonateComponent } from './components/donate/donate.component';
 import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DropdownModule } from 'primeng/dropdown';
+import {CardModule} from 'primeng/card';
+import { ProfileComponent } from './components/profile/profile.component';
+import {AvatarModule} from 'primeng/avatar';
+import { MissionComponent } from './components/mission/mission.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { RegisterIncomeComponent } from './components/register-income/register-income.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +40,12 @@ import { DropdownModule } from 'primeng/dropdown';
     SignUpComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
-    DonateComponent
+    DonateComponent,
+    ProfileComponent,
+    MissionComponent,
+    EditProfileComponent,
+    RegisterIncomeComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +61,9 @@ import { DropdownModule } from 'primeng/dropdown';
     FormsModule,
     ReactiveFormsModule,
     CalendarModule,
-    DropdownModule
+    DropdownModule,
+    CardModule,
+    AvatarModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

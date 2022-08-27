@@ -1,6 +1,6 @@
-<div class="grid m-0 h-full align-content-start" style="background-color: #fff2cf; overflow:scroll">
-    <nav class="col-12 navbar navbar-expand-lg navbar-light bg- p-5">
-        <a class="navbar-brand font-bold" href="#">Donateer</a>
+<div class="grid m-0 h-full align-content-start" style="overflow:scroll">
+    <nav class="col-12 navbar navbar-expand-lg navbar-light bg-blue-100 p-5">
+        <a class="navbar-brand text-white font-bold" href="#">Donateer</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,23 +8,17 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Our Mission</a>
+                    <a class="nav-link" href="/mission">Our Mission</a>
                 </li>
                 <li class="nav-item">
                     <a pButton pRipple type="button" label="Get Involved" class="p-button-warning ml-3 mr-3 text-black-alpha-90 text-xs"
                         href="/donate"></a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="pi pi-user"></i>
+                <li>
+                    <a type="button" href="/profile">
+                        <p-avatar icon="pi pi-user" styleClass="ml-5 mr-2 mt-1"
+                            [style]="{'background-color':'#012269', 'color': '#ffffff'}" shape="circle"></p-avatar>
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#"><i class="pi pi-exclamation-circle"></i>Profile</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"
-                                (click)="authService.SignOut()"></i>Logout</a>
-                    </div>
                 </li>
             </ul>
         </div>
@@ -32,7 +26,7 @@
     <div class="grid col-12 p-8">
         <div class="grid col-12 lg:col-7">
             <div class="col-12">
-                <h4 class="text-5xl font-semibold">Donate Now</h4>
+                <h4 class="text-4xl font-semibold">Donate Now</h4>
             </div>
             <div class="col-12">
                 <span>Why not contribute some income earned from your job to help these charitable organisations?</span>
@@ -46,7 +40,6 @@
     <div class="grid p-fluid col-12 p-8 pt-0">
         <div class="col-12 lg:col-7 pr-8">
             <form [formGroup]="form" (ngSubmit)="onSubmit(form)" class="grid">
-                <h2 class="pb-3">Donation Form</h2>
                 <div class="field col-12">
                     <p-dropdown formControlName="organisation" [options]="cities" optionLabel="name"></p-dropdown>
                 </div>
@@ -75,18 +68,13 @@
                     </span>
                 </div>
                 <div class="field col-12 md:col-6">
-                    <p-button label="Submit"></p-button>
+                    <p-button label="Continue"></p-button>
                 </div>
                 <div class="field col-12 md:col-6">
                     <button pButton pRipple type="button" label="Clear"
                         class="p-button-raised p-button-secondary" (click)="onClear()"></button>
                 </div>
             </form>
-        </div>
-        <div class="grid col-12 lg:col-5">
-            <span>This information is needed to calculate how much money should be donated according to the number of
-                hours you choose to volunteer. It is strictly confidential and will not be disclosed to any
-                third-parties.</span>
         </div>
     </div>
 </div>

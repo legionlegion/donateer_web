@@ -1,0 +1,26 @@
+<div class="grid m-0 h-full backgroundImage">
+    <div class="col-7"></div>
+    <div class="col-5 displayTable flex justify-content-center align-items-center ">
+        <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+            <div class="authBlock">
+                <div style="
+        display: flex;
+        justify-content: center;
+        ">
+                    <img src="assets/auth_image.png" alt="Image" width="250">
+                </div>
+                <h4>Step 2/2: <br />Let’s help you set an estimate of your hourly income!</h4>
+                <p>This information is needed to calculate how much money should be donated according to the number of hours you choose
+                    to volunteer. It is strictly confidential and will not be disclosed to any third-parties.</p>
+                <div class="formGroup pt-3 pb-2">
+                    <input type="number" class="formControl" formControlName="income" placeholder="Enter your monthly income" required>
+                    <small class="p-error block" *ngIf="errorLogin">Income must not be empty.</small>
+                </div>
+                <!-- Calling SignIn Api from AuthService -->
+                <div class="formGroup">
+                    <input type="submit" class="btn btnPrimary" value="Finish">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

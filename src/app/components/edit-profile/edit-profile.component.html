@@ -1,0 +1,54 @@
+<div class="grid m-0 h-full align-content-start" style="overflow:scroll">
+    <nav class="col-12 navbar navbar-expand-lg navbar-light bg-blue-100 p-5">
+        <a class="navbar-brand text-white font-bold" href="#">Donateer</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/mission">Our Mission</a>
+                </li>
+                <li class="nav-item">
+                    <a pButton pRipple type="button" label="Get Involved"
+                        class="p-button-warning ml-3 mr-3 text-black-alpha-90 text-xs" href="/donate"></a>
+                </li>
+                <li>
+                    <a type="button" href="/profile">
+                        <p-avatar icon="pi pi-user" styleClass="ml-5 mr-2 mt-1"
+                            [style]="{'background-color':'#012269', 'color': '#ffffff'}" shape="circle"></p-avatar>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="col-12 flex justify-content-center pt-7">
+        <p-card header="Edit Profile" class="w-7" styleClass="bg-blue-50 pt-4 pl-4">
+            <div class="text-center">
+                <p-avatar label="V" styleClass="mr-2 col-12 m-3" size="xlarge"
+                    [style]="{'background-color':'#012269', 'color': '#ffffff', 'width': '10rem','height': '10rem'}"
+                    shape="circle">
+                </p-avatar>
+            </div>
+            <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+                <div class="editBlock bg-blue-50">
+                    <div class="formGroup pt-2">
+                        <h6>Username</h6>
+                        <input type="text" class="formControl" formControlName="username" placeholder="Email" required>
+                        <small class="p-error block" *ngIf="errorLogin">Username must not be empty.</small>
+                    </div>
+                    <div class="formGroup">
+                        <h6>Income</h6>
+                        <input type="number" class="formControl" formControlName="income" placeholder="Password"
+                            required>
+                        <small class="p-error block" *ngIf="errorLogin">Income must not be empty.</small>
+                    </div>
+                    <div class="formGroup text-right mt-4">
+                        <input pButton pRipple type="submit" class="btn p-button-secondary" value="Save changes">
+                    </div>
+                </div>
+            </form>
+        </p-card>
+    </div>
+</div>
