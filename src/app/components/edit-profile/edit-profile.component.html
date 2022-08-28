@@ -26,16 +26,15 @@
     <div class="col-12 flex justify-content-center pt-7">
         <p-card header="Edit Profile" class="w-7" styleClass="bg-blue-50 pt-4 pl-4">
             <div class="text-center">
-                <p-avatar label="V" styleClass="mr-2 col-12 m-3" size="xlarge"
-                    [style]="{'background-color':'#012269', 'color': '#ffffff', 'width': '10rem','height': '10rem'}"
-                    shape="circle">
-                </p-avatar>
+                <img class="align-self-start w-7 h-7 img-thumbnail rounded-circle"
+                    src="{{(authService.userData.photoURL) ? authService.userData.photoURL : '/assets/dummy-user.png'}}"
+                    alt="{{authService.userData.displayName}}">
             </div>
             <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
                 <div class="editBlock bg-blue-50">
                     <div class="formGroup pt-2">
                         <h6>Username</h6>
-                        <input type="text" class="formControl" formControlName="username" placeholder="Email" required>
+                        <input type="text" class="formControl" formControlName="username" placeholder={{authService.userData.displayName}} required>
                         <small class="p-error block" *ngIf="errorLogin">Username must not be empty.</small>
                     </div>
                     <div class="formGroup">

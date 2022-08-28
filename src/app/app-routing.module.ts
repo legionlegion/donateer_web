@@ -9,6 +9,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { MissionComponent } from './components/mission/mission.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { RegisterIncomeComponent } from './components/register-income/register-income.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 // route guard
 import { AuthGuard } from './shared/guard/auth.guard';
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'edit-profile', component: EditProfileComponent},
   { path: 'register-income', component: RegisterIncomeComponent},
   { path: 'mission', component: MissionComponent},
+  { path: 'payment', component: PaymentComponent},
   
 ];
 @NgModule({

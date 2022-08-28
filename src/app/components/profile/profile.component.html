@@ -27,30 +27,20 @@
     <div class="grid col-12 p-8">
         <div class="col-7 grid">
             <h4 class="text-3xl font-semibold col-12">My Progress</h4>
-            <p-card class="col">
+            <p-card class="col text-center">
                 <p class="font-semibold">hours</p>
                 <p>total volunteered</p>
             </p-card>
-            <p-card class="col">
-                <p class="font-semibold">hours</p>
-                <p>pending</p>
-            </p-card>
-            <p-card class="col">
+            <p-card class="col text-center">
                 <p class="font-semibold">hours</p>
                 <p>total donated</p>
-            </p-card>
-            <p-card class="col">
-                <p class="font-semibold">hours</p>
-                <p>pending donation</p>
             </p-card>
         </div>
         <div class="col-4 ml-8">
             <p-card styleClass="p-card-shadow" class="text-center">
-                <p-avatar label="V" styleClass="mr-2" size="xlarge"
-                    [style]="{'background-color':'#012269', 'color': '#ffffff', 'width': '8rem','height': '8rem'}"
-                    shape="circle"></p-avatar>
-
-                <p class="text-xl font-semibold pt-5">name</p>
+                <img class="align-self-start w-7 h-7 img-thumbnail rounded-circle"
+                    src="{{(authService.userData.photoURL) ? authService.userData.photoURL : '/assets/dummy-user.png'}}" alt="{{authService.userData.displayName}}">
+                <p class="text-xl font-semibold pt-5">{{authService.userData.displayName}}</p>
                 <ng-template pTemplate="footer">
                     <div class="p-2">
                         <a pButton pRipple type="button" label="Edit profile" href="/edit-profile"

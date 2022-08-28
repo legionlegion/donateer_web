@@ -11,8 +11,8 @@
                     <a class="nav-link" href="/mission">Our Mission</a>
                 </li>
                 <li class="nav-item">
-                    <a pButton pRipple type="button" label="Get Involved" class="p-button-warning ml-3 mr-3 text-black-alpha-90 text-xs"
-                        href="/donate"></a>
+                    <a pButton pRipple type="button" label="Get Involved"
+                        class="p-button-warning ml-3 mr-3 text-black-alpha-90 text-xs" href="/donate"></a>
                 </li>
                 <li>
                     <a type="button" href="/profile">
@@ -23,58 +23,58 @@
             </ul>
         </div>
     </nav>
-    <div class="grid col-12 p-8">
+    <div class="grid col-12 p-7 pb-0">
         <div class="grid col-12 lg:col-7">
             <div class="col-12">
                 <h4 class="text-4xl font-semibold">Donate Now</h4>
             </div>
-            <div class="col-12">
-                <span>Why not contribute some income earned from your job to help these charitable organisations?</span>
+            <div class="grid p-fluid col-12 lg:col-10">
+                <div class="col-12">
+                    <span>
+                        The SPCA is not funded by the government. Relying mainly on kind donations from the public and fundraising to support
+                        the shelter and clinic, inspectorate work and animal rescue services, as well as other initiatives such as our foster
+                        care programme, sterilisation programme for community animals, and education and outreach efforts.
+                        <br><br>
+                        Why not contribute some income earned from your job to support the animals?
+                        <br><br>
+                    </span>
+                </div>
+                <form [formGroup]="form" (ngSubmit)="onSubmit(form)" class="grid">
+                    <div class="field col-12">
+                        <span class="p-float-label">
+                            <p-calendar formControlName="startDate" [showIcon]="true" [minDate]="today"
+                                [readonlyInput]="true" inputId="startDate">
+                            </p-calendar>
+                            <label for="startDate">Start date</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <span class="p-float-label">
+                            <p-calendar formControlName="startTime" [showTime]="true" [timeOnly]="true"
+                                [minDate]="today" [readonlyInput]="true" inputId="startTime"
+                                (onSelect)="onChangeStartTime($event)">
+                            </p-calendar>
+                            <label for="startDate">Start time</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <span class="p-float-label">
+                            <p-calendar formControlName="endTime" [showTime]="true" [timeOnly]="true"
+                                [minDate]="startDate" [readonlyInput]="true" inputId="endTime"
+                                (onSelect)="onChangeEndTime($event)">
+                            </p-calendar>
+                            <label for="endTime">End time</label>
+                        </span>
+                    </div>
+                    <div class="field col-12 md:col-12">
+                        <p-button label="Continue"></p-button>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="grid col-12 lg:col-5" style="justify-content: center;">
             <img src="assets/donate.png" class="fade-in-image" alt="Image" width="250"
-                style="min-width: 90%; min-height: 90%">
-        </div>
-    </div>
-    <div class="grid p-fluid col-12 p-8 pt-0">
-        <div class="col-12 lg:col-7 pr-8">
-            <form [formGroup]="form" (ngSubmit)="onSubmit(form)" class="grid">
-                <div class="field col-12">
-                    <p-dropdown formControlName="organisation" [options]="cities" optionLabel="name"></p-dropdown>
-                </div>
-                <div class="field col-12">
-                    <span class="p-float-label">
-                        <p-calendar formControlName="startDate" [showIcon]="true" [minDate]="today"
-                            [readonlyInput]="true" inputId="startDate">
-                        </p-calendar>
-                        <label for="startDate">Start date</label>
-                    </span>
-                </div>
-                <div class="field col-12 md:col-6">
-                    <span class="p-float-label">
-                        <p-calendar formControlName="startTime" [showTime]="true" [timeOnly]="true" [minDate]="today"
-                            [readonlyInput]="true" inputId="startTime" (onSelect)="onChangeStartTime($event)">
-                        </p-calendar>
-                        <label for="startDate">Start time</label>
-                    </span>
-                </div>
-                <div class="field col-12 md:col-6">
-                    <span class="p-float-label">
-                        <p-calendar formControlName="endTime" [showTime]="true" [timeOnly]="true" [minDate]="startDate"
-                            [readonlyInput]="true" inputId="endTime" (onSelect)="onChangeEndTime($event)">
-                        </p-calendar>
-                        <label for="endTime">End time</label>
-                    </span>
-                </div>
-                <div class="field col-12 md:col-6">
-                    <p-button label="Continue"></p-button>
-                </div>
-                <div class="field col-12 md:col-6">
-                    <button pButton pRipple type="button" label="Clear"
-                        class="p-button-raised p-button-secondary" (click)="onClear()"></button>
-                </div>
-            </form>
+                style="min-width: 85%; min-height: 85%">
         </div>
     </div>
 </div>

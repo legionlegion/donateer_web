@@ -31,6 +31,8 @@ import { MissionComponent } from './components/mission/mission.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { RegisterIncomeComponent } from './components/register-income/register-income.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import {DialogModule} from 'primeng/dialog';
+
 
 @NgModule({
   declarations: [
@@ -63,7 +65,8 @@ import { PaymentComponent } from './components/payment/payment.component';
     CalendarModule,
     DropdownModule,
     CardModule,
-    AvatarModule
+    AvatarModule,
+    DialogModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

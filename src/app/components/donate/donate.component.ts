@@ -13,22 +13,17 @@ export class DonateComponent implements OnInit {
   startDate = new Date();
   // duration?: Date;
   form!: FormGroup;
-  cities = [
-    { name: 'New York', code: 'NY' },
-    { name: 'Rome', code: 'RM' },
-    { name: 'London', code: 'LDN' },
-    { name: 'Istanbul', code: 'IST' },
-    { name: 'Paris', code: 'PRS' }
-  ];
 
-  constructor(public authService: AuthService, private formBuilder: FormBuilder, public afs: AngularFirestore,) { }
+  constructor(public authService: AuthService, private formBuilder: FormBuilder, public afs: AngularFirestore,) { 
+    
+  }
 
   async ngOnInit() {
     this.createForm();
     await this.afs.collection(
       `Organisations`
-    ).get().toPromise().then((organisations) => {
-      organisations?.forEach((organisation) => {
+    ).get().toPromise().then((organisations: any) => {
+      organisations?.forEach((organisation: any) => {
         console.log("Organisation data: ",organisation.data());
       });
     });
@@ -37,7 +32,6 @@ export class DonateComponent implements OnInit {
 
   createForm() {
     this.form = this.formBuilder.group({
-      organisation: ['', Validators.required],
       startDate: ['', Validators.required],
       startTime: ['', Validators.required],
       endTime: [{ value: '', disabled: true }, Validators.required],
@@ -58,10 +52,4 @@ export class DonateComponent implements OnInit {
     let differenceMins = Math.floor((time.getTime() - this.startDate.getTime()) / 1000 / 60);
     console.log("DIFFERENCE: ", differenceMins)
   }
-
-  onClear() {
-    this.form.reset();
-    this.form.get("endTime")!.disable();
-  }
-
 }
