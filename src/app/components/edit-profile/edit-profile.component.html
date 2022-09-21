@@ -26,9 +26,9 @@
     <div class="col-12 flex justify-content-center pt-7">
         <p-card header="Edit Profile" class="w-7" styleClass="bg-blue-50 pt-4 pl-4">
             <div class="text-center">
-                <img class="align-self-start w-7 h-7 img-thumbnail rounded-circle"
-                    src="{{(authService.userData.photoURL) ? authService.userData.photoURL : '/assets/dummy-user.png'}}"
-                    alt="{{authService.userData.displayName}}">
+                <p-avatar label="{{authService.userData.displayName[0]}}" styleClass="mr-2" size="xlarge"
+                    [style]="{'background-color':'#012269', 'color': '#ffffff', 'width': '8rem','height': '8rem'}" shape="circle">
+                </p-avatar>
             </div>
             <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
                 <div class="editBlock bg-blue-50">

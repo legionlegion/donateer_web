@@ -38,8 +38,8 @@
         </div>
         <div class="col-4 ml-8">
             <p-card styleClass="p-card-shadow" class="text-center">
-                <img class="align-self-start w-7 h-7 img-thumbnail rounded-circle"
-                    src="{{(authService.userData.photoURL) ? authService.userData.photoURL : '/assets/dummy-user.png'}}" alt="{{authService.userData.displayName}}">
+                <p-avatar label="{{authService.userData.displayName[0]}}" styleClass="mr-2" size="xlarge"
+                    [style]="{'background-color':'#012269', 'color': '#ffffff', 'width': '8rem','height': '8rem'}" shape="circle"></p-avatar>
                 <p class="text-xl font-semibold pt-5">{{authService.userData.displayName}}</p>
                 <ng-template pTemplate="footer">
                     <div class="p-2">
