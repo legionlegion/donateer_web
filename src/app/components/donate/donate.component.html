@@ -61,13 +61,18 @@
                         <span class="p-float-label">
                             <p-calendar formControlName="endTime" [showTime]="true" [timeOnly]="true"
                                 [minDate]="startDate" [readonlyInput]="true" inputId="endTime"
-                                (onSelect)="onChangeEndTime($event)">
+                                (onSelect)="onChangeEndTime($event)"
+                                >
                             </p-calendar>
                             <label for="endTime">End time</label>
                         </span>
                     </div>
+                    <div class="field col-12">
+                        <small class="block">Estimated donation amount: {{donatedAmount}}</small>
+                        <small class="p-error block" *ngIf="false">Donation amount must be greater than 0.</small>
+                    </div>
                     <div class="field col-12 md:col-12">
-                        <p-button label="Continue"></p-button>
+                        <p-button label="Continue" type="submit"></p-button>
                     </div>
                 </form>
             </div>

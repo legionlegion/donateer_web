@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-donate',
@@ -11,23 +13,41 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class DonateComponent implements OnInit {
   today = new Date();
   startDate = new Date();
+  endDate = new Date();
   // duration?: Date;
   form!: FormGroup;
+  donatedAmount: number = 0;
+  donatedTime: number = 0;
+  userData: any;
+  userDocument: any;
+  existingDonations: any;
 
-  constructor(public authService: AuthService, private formBuilder: FormBuilder, public afs: AngularFirestore,) { 
-    
+
+  constructor(public authService: AuthService, private formBuilder: FormBuilder, public afs: AngularFirestore, public afAuth: AngularFireAuth,
+    public router: Router) {
+
   }
 
   async ngOnInit() {
     this.createForm();
-    await this.afs.collection(
-      `Organisations`
-    ).get().toPromise().then((organisations: any) => {
-      organisations?.forEach((organisation: any) => {
-        console.log("Organisation data: ",organisation.data());
+    // await this.afs.collection(
+    //   `Organisations`
+    // ).get().toPromise().then((organisations: any) => {
+    //   organisations?.forEach((organisation: any) => {
+    //     console.log("Organisation data: ",organisation.data());
+    //   });
+    // });
+    this.afAuth.authState.subscribe((user: any) => {
+      this.userData = user;
+      console.log("USER DATA:", this.userData);
+      this.existingDonations = this.afs.collection(
+        'Users'
+      ).doc(this.userData.uid).get().toPromise().then((x: any) => {
+        this.userDocument = x.data();
+        console.log("User document", this.userDocument);
       });
     });
-    console.log("USER DATA:", this.authService.userData)
+
   }
 
   createForm() {
@@ -38,8 +58,18 @@ export class DonateComponent implements OnInit {
     });
   }
 
-  onSubmit(form: FormGroup) {
-
+  async onSubmit(form: FormGroup) {
+    let donation: NavigationExtras = {
+      state: {
+        date: this.startDate,
+        donatedAmount: this.donatedAmount,
+        duration: this.donatedTime,
+        end: this.endDate,
+        name: "TO BE DECIDED",
+        start: this.startDate,
+      }
+    };
+    this.router.navigate(['/payment'], donation);
   }
 
   onChangeStartTime(time: Date) {
@@ -49,7 +79,10 @@ export class DonateComponent implements OnInit {
   }
 
   onChangeEndTime(time: Date) {
-    let differenceMins = Math.floor((time.getTime() - this.startDate.getTime()) / 1000 / 60);
-    console.log("DIFFERENCE: ", differenceMins)
+    this.endDate = time;
+    this.donatedTime = Math.floor((time.getTime() - this.startDate.getTime()) / 1000 / 60);
+    this.donatedAmount = this.donatedTime / 60 * this.userDocument['income'];
+    console.log("DIFFERENCE: ", this.donatedTime);
+    console.log("Donated amount:", this.donatedAmount);
   }
 }
