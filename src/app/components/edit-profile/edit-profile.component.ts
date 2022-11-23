@@ -23,18 +23,17 @@ export class EditProfileComponent implements OnInit {
   formInit() {
     /* INITIALIZE INPUT FORM */
     this.form = this.formBuilder.group({
-      email: ['', Validators.compose([Validators.required])],
-      password: ['', Validators.compose([Validators.required])],
+      username: ['', Validators.compose([Validators.required])],
       income: ['', Validators.compose([Validators.required])],
     });
   }
 
   onSubmit(form: FormGroup) {
-    this.authService.SignUp(form.value.email, form.value.password).then(() => {
-      console.log("then block in sign up component running")
+    this.authService.EditProfile(form.value.username).then(() => {
+      console.log("then block in edit profile component running")
     }).catch((error) => {
       this.errorLogin = true;
-      console.log("catch block in sign up component running");
+      console.log("catch block in edit profile component running");
       console.log("Error:" , error);
       return
     });

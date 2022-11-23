@@ -15,20 +15,14 @@ export class PaymentComponent implements OnInit {
   userData: any;
   userDocument: any;
   existingDonations: any;
+  paypal: any;
 
   constructor(public authService: AuthService, public afs: AngularFirestore, public afAuth: AngularFireAuth,
     public router: Router) {
     const navigation = this.router.getCurrentNavigation();
     this.donationDetails = navigation!.extras.state;
     console.log("Donation details: ", this.donationDetails);
-    render({
-      id: "#paypalButton",
-      currency: "SGD",
-      value: "5",
-      onApprove: (details) => {
-        alert("success");
-        this.onSubmit();
-      }});
+    
   }
 
   async ngOnInit() {
@@ -41,6 +35,15 @@ export class PaymentComponent implements OnInit {
         this.existingDonations = this.userDocument['donations'];
       });
     });
+    render({
+      id: "#paypalButton",
+      currency: "SGD",
+      //value: this.donationDetails.donatedAmount,
+      value: "5",
+      onApprove: (details) => {
+        alert("success");
+        this.onSubmit();
+      }});
   }
 
   async onSubmit() {
@@ -50,6 +53,7 @@ export class PaymentComponent implements OnInit {
     ).doc(this.authService.userData.uid).update({
       'donations': this.existingDonations,
     });
+    this.router.navigate(['profile']);
   }
 
 }

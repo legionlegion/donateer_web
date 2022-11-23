@@ -31,9 +31,9 @@
             <div class="col-12 lg:col-10">
                 <span>You have selected
                 <br>
-                Date: {{ donationDetails.date }}
+                Date: {{ donationDetails.date.toString().substring(0, 15) }}
                 <br>
-                Time: {{ donationDetails.start }} - {{ donationDetails.end }}
+                Time: {{ donationDetails.start.toString().substring(16, 21) }} - {{ donationDetails.end.toString().substring(16, 21) }}
                 <br><br>
                 This corresponds to ${{ donationDetails.donatedAmount }}.
                 <br><br><br><br>

@@ -43,7 +43,8 @@
                     <div class="field col-12">
                         <span class="p-float-label">
                             <p-calendar formControlName="startDate" [showIcon]="true" [minDate]="today"
-                                [readonlyInput]="true" inputId="startDate">
+                                [readonlyInput]="true" inputId="startDate"
+                                (onSelect)="onChangeDate($event)">
                             </p-calendar>
                             <label for="startDate">Start date</label>
                         </span>
@@ -51,7 +52,7 @@
                     <div class="field col-12 md:col-6">
                         <span class="p-float-label">
                             <p-calendar formControlName="startTime" [showTime]="true" [timeOnly]="true"
-                                [minDate]="today" [readonlyInput]="true" inputId="startTime"
+                                [readonlyInput]="true" inputId="startTime"
                                 (onSelect)="onChangeStartTime($event)">
                             </p-calendar>
                             <label for="startDate">Start time</label>
@@ -68,7 +69,8 @@
                         </span>
                     </div>
                     <div class="field col-12">
-                        <small class="block">Estimated donation amount: {{donatedAmount}}</small>
+                          <small class="block">Estimated donation amount: {{donatedAmount}}</small>  
+             
                         <small class="p-error block" *ngIf="false">Donation amount must be greater than 0.</small>
                     </div>
                     <div class="field col-12 md:col-12">

@@ -12,8 +12,9 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class DonateComponent implements OnInit {
   today = new Date();
-  startDate = new Date();
-  endDate = new Date();
+  date = new Date();
+  startDate = new Date(); // start time
+  endDate = new Date(); // end time
   // duration?: Date;
   form!: FormGroup;
   donatedAmount: number = 0;
@@ -61,12 +62,12 @@ export class DonateComponent implements OnInit {
   async onSubmit(form: FormGroup) {
     let donation: NavigationExtras = {
       state: {
-        date: this.startDate,
+        date: this.date,
+        start: this.startDate,
         donatedAmount: this.donatedAmount,
         duration: this.donatedTime,
         end: this.endDate,
-        name: "TO BE DECIDED",
-        start: this.startDate,
+        name: "TO BE DECIDED"
       }
     };
     this.router.navigate(['/payment'], donation);
@@ -84,5 +85,9 @@ export class DonateComponent implements OnInit {
     this.donatedAmount = this.donatedTime / 60 * this.userDocument['income'];
     console.log("DIFFERENCE: ", this.donatedTime);
     console.log("Donated amount:", this.donatedAmount);
+  }
+
+  onChangeDate(time: Date) {
+    this.date = time;
   }
 }

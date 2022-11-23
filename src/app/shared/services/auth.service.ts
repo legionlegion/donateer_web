@@ -79,6 +79,22 @@ export class AuthService {
       });
   }
 
+  // edit profile
+  EditProfile( displayName: string ) {
+        console.log('In Update profile');
+        return this.afAuth.currentUser
+          .then((u: any) => {
+              u.updateProfile({
+            displayName: displayName,
+
+        })
+        this.ngZone.run(() => {
+          console.log("Navigating to dashboard")
+          this.router.navigate(['profile']);
+        });
+        });
+    }
+
   // Reset Forggot password
   ForgotPassword(passwordResetEmail: string) {
     return this.afAuth

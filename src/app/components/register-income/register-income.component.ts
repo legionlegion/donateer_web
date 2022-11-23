@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-income',
@@ -12,8 +13,11 @@ export class RegisterIncomeComponent implements OnInit {
   form!: FormGroup;
   submitted: boolean = false;
   errorLogin: boolean = false;
+  accountDetails: any;
 
-  constructor(public authService: AuthService, private formBuilder: FormBuilder,) { 
+  constructor(public authService: AuthService, private formBuilder: FormBuilder, public router: Router) { 
+    const navigation = this.router.getCurrentNavigation();
+    this.accountDetails = navigation!.extras.state;
   }
 
   ngOnInit() {
@@ -23,14 +27,14 @@ export class RegisterIncomeComponent implements OnInit {
   formInit() {
     /* INITIALIZE INPUT FORM */
     this.form = this.formBuilder.group({
-      email: ['', Validators.compose([Validators.required])],
-      password: ['', Validators.compose([Validators.required])],
+      //email: ['', Validators.compose([Validators.required])],
+      //password: ['', Validators.compose([Validators.required])],
       income: ['', Validators.compose([Validators.required])],
     });
   }
 
   onSubmit(form: FormGroup) {
-    this.authService.SignUp(form.value.email, form.value.password).then(() => {
+    this.authService.SignUp(this.accountDetails, form.value.income).then(() => {
       console.log("then block in sign up component running")
     }).catch((error) => {
       this.errorLogin = true;
