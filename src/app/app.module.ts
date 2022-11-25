@@ -14,8 +14,6 @@ import { environment } from '../environments/environment';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './shared/services/auth.service';
 import { InputTextModule } from 'primeng/inputtext';
@@ -40,8 +38,6 @@ import {DialogModule} from 'primeng/dialog';
     DashboardComponent,
     SignInComponent,
     SignUpComponent,
-    ForgotPasswordComponent,
-    VerifyEmailComponent,
     DonateComponent,
     ProfileComponent,
     MissionComponent,
