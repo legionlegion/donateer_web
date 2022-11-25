@@ -15,6 +15,8 @@ import { Router } from '@angular/router';
 export class AuthService {
 
   userData: any; // Save logged in user data
+  registerUserData: any;
+  isGoogle = false;
 
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
@@ -42,7 +44,7 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password)
       .then(async (result) => {
         console.log("SIGN IN THEN RUNNING")
-
+        console.log(result.user);
         await this.SetUserData(result.user);
         this.ngZone.run(() => {
           console.log("Navigating to dashboard")
@@ -56,9 +58,21 @@ export class AuthService {
   }
 
   // Sign up with email/password
-  SignUp(email: string, password: string) {
-    return this.afAuth
-      .createUserWithEmailAndPassword(email, password)
+  SignUpOne(email: string, password: string, displayName: string) {
+    this.registerUserData = {
+      email: email,
+      password: password,
+      displayName: displayName
+    }
+    this.router.navigate(['register-income']);
+  }
+
+  SignUpTwo(income: string) {
+    this.registerUserData.income = income;
+    if (!this.isGoogle) {
+      // regular sign up
+      return this.afAuth
+      .createUserWithEmailAndPassword(this.registerUserData.email, this.registerUserData.password)
       .then((result) => {
         /* Call the SendVerificaitonMail() function when new user sign 
         up and returns promise */
@@ -67,7 +81,14 @@ export class AuthService {
       })
       .catch((error) => {
         window.alert(error.message);
+        this.router.navigate(['register-user']);
       });
+    } else {
+      // Google sign up
+      return this.SetUserData(this.registerUserData).then(() => {
+        this.router.navigate(['dashboard']);
+      });
+    }
   }
 
   // Send email verfificaiton when new user sign up
@@ -80,7 +101,7 @@ export class AuthService {
   }
 
   // edit profile
-  EditProfile( displayName: string ) {
+  EditProfile(displayName: string ) {
         console.log('In Update profile');
         return this.afAuth.currentUser
           .then((u: any) => {
@@ -115,6 +136,12 @@ export class AuthService {
     // return user !== null && user.emailVerified !== false ? true : false;
   }
 
+  get hasIncome(): boolean {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    console.log("User income: ", user.income)
+    return this.registerUserData.income !== null;   
+  }
+
   // Sign in with Google
   GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {
@@ -125,22 +152,49 @@ export class AuthService {
     });
   }
 
-  // Auth logic to run auth providers
   AuthLogin(provider: any) {
+    this.isGoogle = true;
     return this.afAuth
       .signInWithPopup(provider)
       .then(async (result) => {
-        await this.SetUserData(result.user);
-
-        this.ngZone.run(() => {
-          console.log("Navigating to dashboard")
-          this.router.navigate(['dashboard']);
+        this.registerUserData = result.user;
+        this.afAuth.authState.subscribe((user: any) => {
+          this.afs.collection(
+            'Users'
+          ).doc(this.userData.uid).get().toPromise().then((x: any) => {
+            let userDocument = x.data();
+            console.log("User document", userDocument);
+            if (userDocument.income !== null) {
+              console.log('has income')
+              this.router.navigate(['dashboard']);
+            } else {
+              console.log('no income')
+              this.router.navigate(['register-income']);
+            }
+          });
         });
       })
       .catch((error) => {
         window.alert(error);
       });
   }
+
+  // Auth logic to run auth providers
+  // AuthLogin(provider: any) {
+  //   return this.afAuth
+  //     .signInWithPopup(provider)
+  //     .then(async (result) => {
+  //       await this.SetUserData(result.user);
+
+  //       this.ngZone.run(() => {
+  //         console.log("Navigating to dashboard")
+  //         this.router.navigate(['dashboard']);
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       window.alert(error);
+  //     });
+  // }
 
   /* Setting up user data when sign in with email/password, 
   sign up with username/password and sign in with social auth  
@@ -152,9 +206,10 @@ export class AuthService {
     const userData: User = {
       uid: user.uid,
       email: user.email,
-      displayName: user.displayName,
+      displayName: this.registerUserData.displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
+      income: this.registerUserData.income
     };
     return userRef.set(userData, {
       merge: true,

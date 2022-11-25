@@ -30,14 +30,7 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    this.authService.SignUp(form.value.email, form.value.password).then(() => {
-      console.log("then block in sign up component running")
-    }).catch((error) => {
-      this.errorLogin = true;
-      console.log("catch block in sign up component running");
-      console.log("Error:" , error);
-      return
-    });
+    this.authService.SignUpOne(form.value.email, form.value.password, form.value.username);
   }
 }
 

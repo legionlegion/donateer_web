@@ -34,7 +34,7 @@ export class RegisterIncomeComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    this.authService.SignUp(this.accountDetails, form.value.income).then(() => {
+    this.authService.SignUpTwo(form.value.income).then(() => {
       console.log("then block in sign up component running")
     }).catch((error) => {
       this.errorLogin = true;
