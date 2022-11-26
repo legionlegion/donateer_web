@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-profile',
@@ -12,12 +15,22 @@ export class EditProfileComponent implements OnInit {
   form!: FormGroup;
   submitted: boolean = false;
   errorLogin: boolean = false;
+  userData: any;
+  loaded = false;
+  constructor(public authService: AuthService,  public afs: AngularFirestore, public afAuth: AngularFireAuth,
+    public router: Router, private formBuilder: FormBuilder) { }
 
-  constructor(public authService: AuthService, private formBuilder: FormBuilder,) { 
-  }
-
-  ngOnInit() {
-    this.formInit();
+  ngOnInit(): void {
+    this.afAuth.authState.subscribe((user: any) => {
+      this.afs.collection(
+        'Users'
+      ).doc(user.uid).get().toPromise().then((x: any) => {
+        this.userData = x.data();
+        
+        this.loaded = true;
+        console.log("User document", this.userData);
+      });
+    });
   }
 
   formInit() {
@@ -35,8 +48,8 @@ export class EditProfileComponent implements OnInit {
       this.errorLogin = true;
       console.log("catch block in edit profile component running");
       console.log("Error:" , error);
-      return
     });
+    this.router.navigate(['profile']);
   }
 
 }

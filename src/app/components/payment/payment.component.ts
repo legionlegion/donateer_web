@@ -41,8 +41,7 @@ export class PaymentComponent implements OnInit {
     render({
       id: "#paypalButton",
       currency: "SGD",
-      //value: this.donationDetails.donatedAmount,
-      value: "5",
+      value: this.donationDetails.donatedAmount,
       onApprove: (details) => {
         alert("success");
         this.onSubmit();
