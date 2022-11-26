@@ -28,7 +28,6 @@ export class AuthService {
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe((user: any) => {
       if (user) {
-        console.log("RECEIVED USER DATA")
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user')!);
@@ -44,8 +43,8 @@ export class AuthService {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then(async (result) => {
-        console.log('sign-in result:', result.user);
-        
+        console.log("SIGN IN THEN RUNNING")
+        console.log(result.user);
         await this.SetUserData(result.user);
         this.ngZone.run(() => {
           console.log("Navigating to dashboard")
@@ -53,6 +52,7 @@ export class AuthService {
         });
       })
       .catch((error) => {
+        console.log("SIGN IN CATCH RUNNING");
         throw new Error(error);
       });
   }
@@ -74,11 +74,8 @@ export class AuthService {
       return this.afAuth
       .createUserWithEmailAndPassword(this.registerUserData.email, this.registerUserData.password)
       .then((result) => {
-        /* Call the SendVerificaitonMail() function when new user sign 
-        up and returns promise */
-        console.log('sign up result:', result.user)
-        this.SendVerificationMail();
         this.SetUserData(result.user);
+        this.router.navigate(['dashboard']);
       })
       .catch((error) => {
         window.alert(error.message);
@@ -86,20 +83,10 @@ export class AuthService {
       });
     } else {
       // Google sign up
-      // Google's registerUserData is same as result.user 
       return this.SetUserData(this.registerUserData).then(() => {
         this.router.navigate(['dashboard']);
       });
     }
-  }
-
-  // Send email verfificaiton when new user sign up
-  SendVerificationMail() {
-    return this.afAuth.currentUser
-      .then((u: any) => u.sendEmailVerification())
-      .then(() => {
-        this.router.navigate(['verify-email-address']);
-      });
   }
 
   // edit profile
@@ -118,18 +105,7 @@ export class AuthService {
         });
     }
 
-  // Reset Forggot password
-  ForgotPassword(passwordResetEmail: string) {
-    return this.afAuth
-      .sendPasswordResetEmail(passwordResetEmail)
-      .then(() => {
-        window.alert('Password reset email sent, check your inbox.');
-      })
-      .catch((error) => {
-        window.alert(error);
-      });
-  }
-
+    
   // Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user')!);
@@ -138,11 +114,16 @@ export class AuthService {
     // return user !== null && user.emailVerified !== false ? true : false;
   }
 
+  get hasIncome(): boolean {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    console.log("User income: ", user.income)
+    return this.registerUserData.income !== null;   
+  }
+
   // Sign in with Google
   GoogleAuth() {
     return this.AuthLogin(new auth.GoogleAuthProvider()).then((res: any) => {
       if (res) {
-        // the code below does not run because of no res returned from AuthLogin
         console.log("Navigating to dashboard")
         this.router.navigate(['dashboard']);
       }
@@ -208,7 +189,6 @@ export class AuthService {
       emailVerified: user.emailVerified,
       income: this.registerUserData.income
     };
-    console.log(userData);
     return userRef.set(userData, {
       merge: true,
     });
