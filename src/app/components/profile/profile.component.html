@@ -1,5 +1,5 @@
 <!-- Top navigation -->
-<div class="grid m-0 align-content-start backgroundImage" style="height: 65%">
+<div class="grid m-0 align-content-start backgroundImage" style="height: 65%" *ngIf="loaded">
     <nav class="col-12 navbar navbar-expand-lg navbar-light bg-blue-100 p-5">
         <a class="navbar-brand text-white font-bold" href="#">Donateer</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -38,9 +38,9 @@
         </div>
         <div class="col-4 ml-8">
             <p-card styleClass="p-card-shadow" class="text-center">
-                <p-avatar label="{{authService.userData.displayName[0]}}" styleClass="mr-2" size="xlarge"
+                <p-avatar label="{{userData.displayName[0]}}" styleClass="mr-2" size="xlarge"
                     [style]="{'background-color':'#012269', 'color': '#ffffff', 'width': '8rem','height': '8rem'}" shape="circle"></p-avatar>
-                <p class="text-xl font-semibold pt-5">{{authService.userData.displayName}}</p>
+                <p class="text-xl font-semibold pt-5">{{userData.displayName}}</p>
                 <ng-template pTemplate="footer">
                     <div class="p-2">
                         <a pButton pRipple type="button" label="Edit profile" href="/edit-profile"

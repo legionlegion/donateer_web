@@ -33,6 +33,9 @@ export class PaymentComponent implements OnInit {
       ).doc(this.userData.uid).get().toPromise().then((x: any) => {
         this.userDocument = x.data();
         this.existingDonations = this.userDocument['donations'];
+        if (this.existingDonations === null) {
+          this.existingDonations = [];
+        }
       });
     });
     render({
