@@ -27,6 +27,7 @@ export class AuthService {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe((user: any) => {
+      console.log("New userdata received: ", user)
       if (user) {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
@@ -44,11 +45,19 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password)
       .then(async (result) => {
         console.log("SIGN IN THEN RUNNING")
-        console.log(result.user);
-        await this.SetUserData(result.user);
-        this.ngZone.run(() => {
-          console.log("Navigating to dashboard")
-          this.router.navigate(['dashboard']);
+        console.log(result.user!.uid);
+        this.afAuth.authState.subscribe((user: any) => {
+          this.afs.collection(
+            'Users'
+          ).doc(result.user!.uid).get().toPromise().then(async (x: any) => {
+            let userDocument = x.data();
+            console.log("User document", userDocument);
+            await this.SetUserData(userDocument);
+            this.ngZone.run(() => {
+              console.log("Navigating to dashboard")
+              this.router.navigate(['dashboard']);
+            });
+          });
         });
       })
       .catch((error) => {
@@ -142,11 +151,16 @@ export class AuthService {
           ).doc(this.userData.uid).get().toPromise().then((x: any) => {
             let userDocument = x.data();
             console.log("User document", userDocument);
-            if (userDocument.income !== null) {
-              console.log('has income')
-              this.router.navigate(['dashboard']);
+            if (userDocument !== undefined) {
+              if (userDocument.income !== null) {
+                console.log('has income')
+                this.router.navigate(['dashboard']);
+              } else {
+                console.log('no income')
+                this.router.navigate(['register-income']);
+              }
             } else {
-              console.log('no income')
+              // user does not exist in firestore
               this.router.navigate(['register-income']);
             }
           });
@@ -184,10 +198,10 @@ export class AuthService {
     const userData: User = {
       uid: user.uid,
       email: user.email,
-      displayName: this.registerUserData.displayName,
+      displayName: user.displayName !== null ? user.displayName : this.registerUserData.displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
-      income: this.registerUserData.income
+      income: user.income !== null ? user.income : this.registerUserData.income
     };
     return userRef.set(userData, {
       merge: true,
