@@ -82,7 +82,7 @@ export class DonateComponent implements OnInit {
   onChangeEndTime(time: Date) {
     this.endDate = time;
     this.donatedTime = Math.floor((time.getTime() - this.startDate.getTime()) / 1000 / 60);
-    this.donatedAmount = this.donatedTime / 60 * this.userDocument['income'];
+    this.donatedAmount = Math.floor(this.donatedTime / 60 * this.userDocument['income']);
     console.log("DIFFERENCE: ", this.donatedTime);
     console.log("Donated amount:", this.donatedAmount);
   }

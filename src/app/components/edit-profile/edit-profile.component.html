@@ -1,4 +1,4 @@
-<div class="grid m-0 h-full align-content-start" style="overflow:scroll">
+<div class="grid m-0 h-full align-content-start" style="overflow:scroll" *ngIf="loaded">
     <nav class="col-12 navbar navbar-expand-lg navbar-light bg-blue-100 p-5">
         <a class="navbar-brand text-white font-bold" href="#">Donateer</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -26,7 +26,7 @@
     <div class="col-12 flex justify-content-center pt-7">
         <p-card header="Edit Profile" class="w-7" styleClass="bg-blue-50 pt-4 pl-4">
             <div class="text-center">
-                <p-avatar label="{{authService.userData.displayName[0]}}" styleClass="mr-2" size="xlarge"
+                <p-avatar label="{{userData.displayName[0]}}" styleClass="mr-2" size="xlarge"
                     [style]="{'background-color':'#012269', 'color': '#ffffff', 'width': '8rem','height': '8rem'}" shape="circle">
                 </p-avatar>
             </div>
@@ -34,12 +34,12 @@
                 <div class="editBlock bg-blue-50">
                     <div class="formGroup pt-2">
                         <h6>Username</h6>
-                        <input type="text" class="formControl" formControlName="username" placeholder={{authService.userData.displayName}} required>
+                        <input type="text" class="formControl" formControlName="username" placeholder={{userData.displayName}} required>
                         <small class="p-error block" *ngIf="errorLogin">Username must not be empty.</small>
                     </div>
                     <div class="formGroup">
                         <h6>Income</h6>
-                        <input type="number" class="formControl" formControlName="income" placeholder="Password"
+                        <input type="number" class="formControl" formControlName="income" placeholder={{userData.income}}
                             required>
                         <small class="p-error block" *ngIf="errorLogin">Income must not be empty.</small>
                     </div>
