@@ -82,7 +82,7 @@ export class DonateComponent implements OnInit {
   onChangeEndTime(time: Date) {
     this.endDate = time;
     this.donatedTime = Math.floor((time.getTime() - this.startDate.getTime()) / 1000 / 60);
-    this.donatedAmount = Math.floor(this.donatedTime / 60 * this.userDocument['income']);
+    this.donatedAmount = parseFloat((this.donatedTime / 60 * this.userDocument['income'] / (44 * 4)).toFixed(2)); // average working hours of 44 per week in Singapore
     console.log("DIFFERENCE: ", this.donatedTime);
     console.log("Donated amount:", this.donatedAmount);
   }

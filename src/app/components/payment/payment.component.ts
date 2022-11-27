@@ -33,7 +33,7 @@ export class PaymentComponent implements OnInit {
       ).doc(this.userData.uid).get().toPromise().then((x: any) => {
         this.userDocument = x.data();
         this.existingDonations = this.userDocument['donations'];
-        if (this.existingDonations === null) {
+        if (this.existingDonations === null || this.existingDonations === undefined) {
           this.existingDonations = [];
         }
       });
@@ -50,6 +50,7 @@ export class PaymentComponent implements OnInit {
 
   async onSubmit() {
     this.existingDonations.push(this.donationDetails);
+    console.log("Existing donations:", this.existingDonations);
     await this.afs.collection(
       'Users'
     ).doc(this.authService.userData.uid).update({

@@ -99,19 +99,10 @@ export class AuthService {
   }
 
   // edit profile
-  EditProfile(displayName: string ) {
-        console.log('In Update profile');
-        return this.afAuth.currentUser
-          .then((u: any) => {
-              u.updateProfile({
-            displayName: displayName,
-
-        })
-        this.ngZone.run(() => {
-          console.log("Navigating to dashboard")
-          this.router.navigate(['profile']);
-        });
-        });
+  EditProfile(displayName: string, income: string) {
+        return this.EditUserData(this.userData, displayName, income).then(() => {
+        this.router.navigate(['profile']);
+      });
     }
 
     
@@ -201,7 +192,24 @@ export class AuthService {
       displayName: user.displayName !== null ? user.displayName : this.registerUserData.displayName,
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
-      income: user.income !== null ? user.income : this.registerUserData.income
+      income: (user.income !== null && user.income !== undefined) ? user.income : this.registerUserData.income
+    };
+    return userRef.set(userData, {
+      merge: true,
+    });
+  }
+
+  EditUserData(user: any, displayName: string, income: string) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
+      `Users/${user.uid}`
+    );
+    const userData: User = {
+      uid: user.uid,
+      email: user.email,
+      displayName: displayName !== null ? displayName : user.displayName,
+      photoURL: user.photoURL,
+      emailVerified: user.emailVerified,
+      income: (income !== null && income !== undefined) ? income : user.income
     };
     return userRef.set(userData, {
       merge: true,

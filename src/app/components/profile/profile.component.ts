@@ -12,6 +12,8 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class ProfileComponent implements OnInit {
   userData: any;
   loaded = false;
+  totalHours = 0;
+  totalAmount = 0;
   constructor(public authService: AuthService,  public afs: AngularFirestore, public afAuth: AngularFireAuth,
     public router: Router) { }
 
@@ -21,10 +23,15 @@ export class ProfileComponent implements OnInit {
         'Users'
       ).doc(user.uid).get().toPromise().then((x: any) => {
         this.userData = x.data();
+        for (var donation of this.userData.donations) {
+          this.totalAmount += donation.donatedAmount;
+          this.totalHours += donation.duration;
+        }
+        this.totalHours /= 60;
+        this.totalHours = parseFloat(this.totalHours.toFixed(2));
         this.loaded = true;
         console.log("User document", this.userData);
       });
     });
   }
-
 }

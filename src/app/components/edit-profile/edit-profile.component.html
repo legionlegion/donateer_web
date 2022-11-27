@@ -30,7 +30,7 @@
                     [style]="{'background-color':'#012269', 'color': '#ffffff', 'width': '8rem','height': '8rem'}" shape="circle">
                 </p-avatar>
             </div>
-            <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+            <form [formGroup]="form" (ngSubmit)="onSubmit(form)" *ngIf="form">
                 <div class="editBlock bg-blue-50">
                     <div class="formGroup pt-2">
                         <h6>Username</h6>

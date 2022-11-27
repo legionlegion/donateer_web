@@ -21,6 +21,7 @@ export class EditProfileComponent implements OnInit {
     public router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.formInit()
     this.afAuth.authState.subscribe((user: any) => {
       this.afs.collection(
         'Users'
@@ -42,7 +43,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) {
-    this.authService.EditProfile(form.value.username).then(() => {
+    this.authService.EditProfile(form.value.username, form.value.income).then(() => {
       console.log("then block in edit profile component running")
     }).catch((error) => {
       this.errorLogin = true;
