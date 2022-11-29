@@ -14,7 +14,8 @@
                     to volunteer. It is strictly confidential and will not be disclosed to any third-parties.</p>
                 <div class="formGroup pt-3 pb-2">
                     <input type="number" class="formControl" formControlName="income" placeholder="Enter your monthly income" required>
-                    <small class="p-error block" *ngIf="errorLogin">Income must not be empty.</small>
+                    <small class="p-error block" *ngIf="emptyIncome">Income must not be empty.</small>
+                    <small class="p-error block" *ngIf="noIncome">Income must not be zero.</small>
                 </div>
                 <!-- Calling SignIn Api from AuthService -->
                 <div class="formGroup">

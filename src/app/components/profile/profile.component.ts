@@ -23,6 +23,10 @@ export class ProfileComponent implements OnInit {
         'Users'
       ).doc(user.uid).get().toPromise().then((x: any) => {
         this.userData = x.data();
+        console.log('userdata:', this.userData);
+        if (this.userData.donations === null || this.userData.donations === undefined) {
+          this.userData.donations = [];
+        }
         for (var donation of this.userData.donations) {
           this.totalAmount += donation.donatedAmount;
           this.totalHours += donation.duration;
