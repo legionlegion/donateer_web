@@ -1,27 +1,18 @@
-# DonateerWeb
+### **Donateer Web Project**
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.4.
+#### **Description**
+The [Donateer Web Project](https://donateer.web.app) is a dedicated platform designed to facilitate users in making seamless donations to SPCA. With a user-friendly interface and straightforward functionalities, the web application aims to boost contributions and support for animal welfare through a more innovative approach, by donating amounts calculated based on one's hourly income!
 
-## Development server
+#### **Features**
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. **Innovative Donations:** Users are asked for their hourly income and subsequently, we ask how much time they would like to donate.
+2. **Secure Donations:** Integration with Paypal to ensure secure and swift donation transactions.
+3. **Donation History:** Users can view and track their past donation transactions in their profile page.
+4. **Responsive Design:** The platform is optimized for various screen sizes ensuring consistency across devices.
 
-## Code scaffolding
+#### **Technologies Used**
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Frontend:** HTML, CSS, Angular, TypeScript
+- **Backend:** Firebase
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+---
